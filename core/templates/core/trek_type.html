@@ -1,0 +1,27 @@
+{% extends 'trekfinder/base.html' %}
+{% block title %}{{ type|title }} Treks{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="text-center">{{ type|title }} Treks in Karnataka</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+    {% for trek in treks %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ trek.name }}</h5>
+          <p class="card-text">{{ trek.description|truncatechars:100 }}</p>
+          <ul class="list-unstyled">
+            <li><strong>District:</strong> {{ trek.district.name }}</li>
+            <li><strong>Difficulty:</strong> {{ trek.difficulty }}</li>
+            <li><strong>Duration:</strong> {{ trek.duration }}</li>
+            <li><strong>Best Month:</strong> {{ trek.best_month }}</li>
+          </ul>
+          <a href="{% url 'trek_detail' trek.id %}" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

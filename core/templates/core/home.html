@@ -1,0 +1,111 @@
+{% extends 'trekfinder/base.html' %}
+{% load static %}
+
+
+{% block title %}Welcome to TrekFinder Karnataka{% endblock %}
+
+{% block content %}
+
+
+<!-- 1. Header / Navbar -->
+
+
+<!-- 2. Hero Banner -->
+<section class="hero-section text-white text-center d-flex align-items-center justify-content-center" style="background-image: url('/static/images/hero.jpg'); height: 80vh; background-size: cover; background-position: center;">
+  <div class="bg-dark bg-opacity-50 p-5 rounded">
+    <h1>🌲 Discover Karnataka’s Hidden Trails</h1>
+    <form class="d-flex mt-3 justify-content-center">
+      <input type="text" class="form-control w-50 me-2" placeholder="Search Trek / District">
+      <button class="btn btn-primary">Explore Treks</button>
+    </form>
+  </div>
+</section>
+<!-- 4. Explore by Trek Type -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">🧭 Explore by Trek Type</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/hill_trek.jpg' %}" class="card-img-top" alt="Hill Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">🏔️ Hill Treks</h5>
+          <a href="{% url 'trek_type' 'hill' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/waterfall_trek.jpg' %}" class="card-img-top" alt="Waterfall Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">💧 Waterfall Treks</h5>
+          <a href="{% url 'trek_type' 'waterfall' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/fort_trek.jpg' %}" class="card-img-top" alt="Fort Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">🏰 Fort Treks</h5>
+          <a href="{% url 'trek_type' 'fort' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/rock_trek.jpg' %}" class="card-img-top" alt="Rock Terrain Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">🪨 Rock Terrain Treks</h5>
+          <a href="{% url 'trek_type' 'rock' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/forest_trek.jpg' %}" class="card-img-top" alt="Forest Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">🌳 Forest Treks</h5>
+          <a href="{% url 'trek_type' 'forest' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/types/spiritual_trek.jpg' %}" class="card-img-top" alt="Spiritual Treks">
+        <div class="card-body text-center">
+          <h5 class="card-title">🧘 Spiritual Treks</h5>
+          <a href="{% url 'trek_type' 'spiritual' %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3. Explore by District -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">🗺️ Explore by District</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for district in districts|slice:":6" %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/districts/'|add:district.name|add:'.jpg' %}" class="card-img-top" alt="{{ district.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ district.name }}</h5>
+          <a href="{% url 'district_detail' district.id %}" class="btn btn-outline-primary">View Treks</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- More sections like Trek Type, Top Rated, Gear Rental etc. will follow... -->
+
+{% endblock %}

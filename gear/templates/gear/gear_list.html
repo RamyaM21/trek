@@ -1,0 +1,27 @@
+<!-- gear_list.html -->
+{% extends 'trekfinder/base.html' %}
+{% load static %}
+{% block title %}Gear Rental{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Rent Trekking Gear</h2>
+  <div class="row">
+    {% for gear in gears %}
+    <div class="col-md-3">
+      <div class="card mb-4">
+        <img src="{{ gear.image.url }}" class="card-img-top" alt="{{ gear.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ gear.name }}</h5>
+         
+
+          <p class="card-text">
+            ₹{{ gear.price }} <br>
+            <a href="{% url 'gear_detail' gear.id %}" class="btn btn-sm btn-outline-primary mt-2">Select Option</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

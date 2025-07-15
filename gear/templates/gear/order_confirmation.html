@@ -1,0 +1,14 @@
+{% extends 'trekfinder/base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <div class="alert alert-success" role="alert">
+    <h2 class="mb-3">✅ Order Placed Successfully!</h2>
+    <p>Thank you for booking your trekking gear with us.</p>
+    <p>You will receive a confirmation email shortly with the order details.</p>
+  </div>
+
+  <a href="{% url 'gear_list' %}" class="btn btn-primary mt-3">Explore More Gear</a>
+  <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Go to Dashboard</a>
+</div>
+{% endblock %}

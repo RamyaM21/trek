@@ -1,0 +1,64 @@
+{% extends 'trekfinder/base.html' %}
+{% load static %}
+{% block title %}{{ gear.name }} - Rent Gear{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ gear.image.url }}" alt="{{ gear.name }}" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ gear.name }}</h2>
+      <p><strong>Price:</strong> ₹{{ gear.price }}</p>
+
+      <!-- ✅ Begin Form -->
+      <form method="post" action="{% url 'add_to_cart' gear.id %}">
+        {% csrf_token %}
+
+        {% with gear_name=gear.name|lower %}
+          {% if 'jacket' in gear_name or 'gloves' in gear_name or 'pant' in gear_name or 'shoes' in gear_name %}
+            <!-- Show Size dropdown -->
+            <div class="mb-3">
+              <label for="size" class="form-label">Select Size *</label>
+              <select name="size" id="size" class="form-select" required>
+                <option value="">-- Select Size --</option>
+                <option value="XS">Extra Small</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+                <option value="XL">Extra Large</option>
+              </select>
+            </div>
+          {% else %}
+            <input type="hidden" name="size" value="Not Required">
+          {% endif %}
+        {% endwith %}
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Trek Date *</label>
+              <input type="date" name="trek_date" id="trek_date" class="form-control" required>
+
+        </div>
+
+        <div class="mb-3">
+          <label for="trek_name" class="form-label">Trek Name *</label>
+          <input type="text" name="trek_name" id="trek_name" class="form-control" placeholder="e.g. Kumara Parvatha" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">Add to Cart</button>
+      </form>
+      <!-- ✅ End Form -->
+
+      <a href="{% url 'cart' %}" class="btn btn-primary mt-3">View Cart</a>
+      
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

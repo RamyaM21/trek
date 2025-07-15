@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Checkout</h2>
+  <ul>
+    {% for item in cart_items %}
+      <li>{{ item.gear.name }} - Quantity: {{ item.quantity }} - ₹{{ item.gear.price }}</li>
+    {% endfor %}
+  </ul>
+  <p><strong>Total:</strong> ₹{{ total }}</p>
+
+  <!-- You can later add a form for payment or confirmation -->
+{% endblock %}

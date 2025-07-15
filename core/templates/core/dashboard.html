@@ -1,0 +1,8 @@
+<h2>Dashboard</h2>
+<p>Hello {{ request.user.username }}!</p>
+{% if request.user.is_superuser %}
+  <p>Admin Panel</p>
+{% else %}
+  <p>User Panel</p>
+{% endif %}
+<a href="{% url 'logout' %}">Logout</a>

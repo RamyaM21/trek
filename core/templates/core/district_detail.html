@@ -1,0 +1,9 @@
+<h2>Trekking Places in {{ district.name }}</h2>
+<ul>
+  {% for trek in treks %}
+    <li>
+      <a href="{% url 'trek_detail' trek.id %}">{{ trek.name }}</a> – Difficulty: {{ trek.difficulty }}, Duration: {{ trek.duration }}, Best Month: {{ trek.best_month }}
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'home' %}">Back to Districts</a>
